@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Welcome {{request.user.first_name}} {{request.user.last_name}} <img src="{{request.user.userdetail.image.url}}" height="100" width=120</h2>
+    <h5>Mobile :{{request.user.userdetail.mobile}}</h5>
+
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+      {{u_form.as_p}}
+      {{p_form.as_p}}
+      <button type="submit">Update Profile</button>
+      <a href="home">Back To Home</a>
+    </form>
+
+  </body>
+</html>

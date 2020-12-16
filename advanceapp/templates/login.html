@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    {% if error %}
+    <p>{{error}}</p>
+    {% endif %}
+
+       {% if user.is_authenticated %}
+       <a href="dashboard">Dashboard</a>
+       <a href="userlogout">Logout</a>
+       {% else %}
+       <a href="userlogin">Login</a>
+       <a href="signup">Signup</a>
+       {% endif %}
+    </div>
+    <h2>Login Page</h2>
+
+    <form action="userlogin"method="POST">{% csrf_token %}
+      <div class="bawa">
+
+        <input type="email" name="email" placeholder="Email">
+      </div><br>
+      <div class="bawa">
+
+        <input type="password"name="password" placeholder="Password">
+      </div><br>
+      <input type="hidden" name="next" value="{{request.GET.next}}">
+      <div class="bawa">
+
+        <input type="submit"value="Login">
+      </div><br>
+      <a href="signup">New Here?Signup</a>
+      <a href="password_reset/">Change Password</a>
+    </form>
+  </body>
+</html>

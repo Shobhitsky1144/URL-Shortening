@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="home">Home</a>
+    <a href="#">Features</a>
+    <a href="#">Pricing</a>
+    <h1>this is dashboard</h1>
+  
+    <h3>Shorten A Url</h3>
+    <form action="generate" method="POST">{% csrf_token %}
+      <div class="">
+        <input type="url" name="original" placeholder="Original Url">
+      </div>
+      <div class="">
+        <div class="bawa">http://localhost:8000/</div>
+        <input type="text" name="short"placeholder="Short Char (6 chars)" max_length="6">
+      </div>
+      <p>Leave It Blank To generate randomly</p>
+      <input type="submit" value="Generate">
+
+    </form>
+
+  <h4>Your Url</h4>
+  {% for u in urls %}
+  <p>Original : <a href="{{u.original_url}}">{{u.original_url}}</a></p>
+  <p>Shorten : <a href="https://localhost:8000/{{u.short_query}}">https://localhost:8000/{{u.short_query}}</a></p>
+  <h3>Visits : {{u.visits}}</h3>
+  <form action="deleteurl" method="POST"> {% csrf_token %}
+    <input type="hidden" name="delete" value="{{u.short_query}}">
+    <input type="submit" value="Delete">
+
+  </form>
+  {% endfor %}
+
+  </body>
+</html>
